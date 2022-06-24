@@ -25,3 +25,15 @@ Copylefted libre software. Use, study, change and share; with all, according to 
 
 ## Developers
 The UI is designed with the GUI Designer from IntelliJ IDEA. Read [readme-intelliJ.md](readme-intellIJ.md)
+
+---
+
+# Sponsors/Mecenas
+Esta aplicación ha sido posible gracias al programa de Mecenazgo Cultural de la Ciudad Autónoma de Buenos Aires, Argentina
+
+![Logo Mecenazgo 2021 blanco](https://user-images.githubusercontent.com/693328/175469424-ba7cce63-1f2b-4083-bfb5-9d9c2d4a5067.png)
+
+y muy especialmente a nuestros mecenas
+
+- Banco Hipotecario [https://www.hipotecario.com.ar/]
+- Techniques & Supplies [https://www.techniques.com.ar/]
