@@ -1,30 +1,30 @@
 # jExifToolGUI
-**Graphical frontend for the excellent command-line ExifTool by Phil Harvey.**
+**Interfaz gráfica para el excelente ExifTool de línea de comandos de Phil Harvey.**
 
 ![multi platform jExifToolGUI](https://github.com/hvdwolf/jExifToolGUI/blob/master/images/multi-platform-1280.jpg)
-**jExifToolGUI** is a java/Swing program for Windows/Linux/macOS that functions as a graphical frontend (GUI) for [exiftool](https://exiftool.org/).<br><br>
-jExifToolGUI is (just) a graphical frontend for ExifTool. It can use a "reference" image to write the tags to a multiple set of photos, like GPS tags for photos taken at the same location but somehow miss or contain incorrect GPS info.<br>
-jExifToolGUI also contains extensive renaming functionality based on the Exif info in your photos.<br>
+**jExifToolGUI** es un programa java/Swing para Windows/Linux/macOS que funciona como un frontend gráfico (GUI) para [exiftool](https://exiftool.org/).<br><br>
+jExifToolGUI es (sólo) un frontend gráfico para ExifTool. Puede utilizar una imagen de "referencia" para escribir las etiquetas a un conjunto múltiple de fotos, como las etiquetas GPS para las fotos tomadas en el mismo lugar, pero que de alguna manera les falta o contienen información GPS incorrecta.<br>
+jExifToolGUI también tiene muchas funcionalidades de renombramiento basadas en la información Exif.<br>
 
-**ExifTool** is a platform-independent Perl command-line application and library for reading, writing and editing metadata in a wide variety of files.<br>
-Many thanks go to Phil Harvey for his excellent tool. Without ExifTool, this graphical frontend for ExifTool would never have existed.<br>
-[Exiftool](https://exiftool.org/) is by far the best and most extensive metadata tool available!<br>
-It reads and writes metadata information from/to many files, but primarily focuses on photos/images. It reads/writes EXIF, GPS, XMP, maker notes for many cameras, JFIF, GeoTIFF, ICC Profile, Photoshop IRB, FlashPix, VRA Core 4, ISAD(G) and many, many more tags.<br>
-It can use a "reference" image to write the tags to a multiple set of photos or a complete directory containing photos.<br>
+**ExifTool** es una aplicación y biblioteca de línea de comandos Perl independiente de la plataforma para leer, escribir y editar metadatos en una amplia variedad de archivos.<br>
 
-Copylefted libre software. Use, study, change and share; with all, according to the GPLv3+ license.
+[Exiftool](https://exiftool.org/) es, con mucho, la mejor y más amplia herramienta de metadatos disponible.<br>
+Lee y escribe información de metadatos de/a muchos archivos, pero se centra principalmente en fotos/imágenes. Lee y escribe EXIF, GPS, XMP, notas del fabricante para muchas cámaras, JFIF, GeoTIFF, Perfil ICC, Photoshop IRB, FlashPix, Dublin Core, VRA Core 4, ISAD(G) y muchas más etiquetas.<br>
+Puedes utilizar una imagen de "referencia" para escribir las etiquetas en un conjunto múltiple de imágenes o en un directorio completo que las contenga.<br>
+
+Software libre con copyleft. Utiliza, estudia, cambia y comparte; con todos, según la licencia GPLv3+.
 <br><br>
-[Releases](https://github.com/hvdwolf/jExifToolGUI/releases)<br> 
+[Versiones](https://github.com/hvdwolf/jExifToolGUI/releases)<br> 
 [Website](https://hvdwolf.github.io/jExifToolGUI/).<br>
-[English Online manual](https://hvdwolf.github.io/jExifToolGUI/manual/index.html).<br>
-[Spanish Online manual](https://docs.museosabiertos.org/jexiftoolgui).<br>
-[YouTube Instruction videos](https://www.youtube.com/playlist?list=PLAHD8RNkeuGdyRH7BKFefc7p72Dp6jVjW).<br>
-[Hosted Weblate translation](https://hosted.weblate.org/engage/jexiftoolgui/) <a href="https://hosted.weblate.org/engage/jexiftoolgui/">
+[Manual en inglés](https://hvdwolf.github.io/jExifToolGUI/manual/index.html).<br>
+[Manual en Español](https://docs.museosabiertos.org/jexiftoolgui).<br>
+[YouTube videos](https://www.youtube.com/playlist?list=PLAHD8RNkeuGdyRH7BKFefc7p72Dp6jVjW).<br>
+[Traducción alojada en Weblate](https://hosted.weblate.org/engage/jexiftoolgui/) <a href="https://hosted.weblate.org/engage/jexiftoolgui/">
 <img src="https://hosted.weblate.org/widgets/jexiftoolgui/-/88x31-white.png" alt="Translation status" /></a><br>
 <hr>
 
-## Developers
-The UI is designed with the GUI Designer from IntelliJ IDEA. Read [readme-intelliJ.md](readme-intellIJ.md)
+## Desarrolladores
+La UI está diseñada con el Diseñador de GUI de IntelliJ IDEA. Leer [readme-intelliJ.md](readme-intellIJ.md)
 
 ---
 
