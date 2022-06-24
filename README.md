@@ -23,7 +23,5 @@ Copylefted libre software. Use, study, change and share; with all, according to 
 <img src="https://hosted.weblate.org/widgets/jexiftoolgui/-/88x31-white.png" alt="Translation status" /></a><br>
 <hr>
 
-<br><br>jExifToolGUI is a remake of my own [pyExifToolGUI](https://github.com/hvdwolf/pyExifToolGUI) ([website](https://hvdwolf.github.io/pyExifToolGUI/)).<br><br>
-
 ## Developers
 The UI is designed with the GUI Designer from IntelliJ IDEA. Read [readme-intelliJ.md](readme-intellIJ.md)
