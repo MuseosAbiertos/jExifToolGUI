@@ -27,13 +27,28 @@ Software libre con copyleft. Utiliza, estudia, cambia y comparte; con todos, seg
 La UI está diseñada con el Diseñador de GUI de IntelliJ IDEA. Leer [readme-intelliJ.md](readme-intellIJ.md)
 
 ---
+# Fork
+Esta versión es un fork que amplía las capacidades de jExifToolGUI para la edición de metadatos VRA Core, ISAD(G) y Dublin Core e incluye archivos los de configuración para ExifTool; la cual se integrará a la rama master.
+
+# Acknowledgments/Agradecimientos
+* Harry van der Wolf
+* Greg Reser
+* Jairo Serrano
 
 # Sponsors/Mecenas
-Esta aplicación ha sido posible gracias al programa de Mecenazgo Cultural de la Ciudad Autónoma de Buenos Aires, Argentina
+Esta aplicación ha sido posible gracias al programa de **Mecenazgo Cultural** de la Ciudad Autónoma de Buenos Aires, Argentina
 
-![Logo Mecenazgo 2021 blanco](https://user-images.githubusercontent.com/693328/175469424-ba7cce63-1f2b-4083-bfb5-9d9c2d4a5067.png)
+![Logo Mecenazgo 2021 blanco](https://user-images.githubusercontent.com/693328/175651622-df6f7d4d-ba78-4862-88f1-3b161c48d428.png)
+
+https://www.buenosaires.gob.ar/mecenazgo
 
 y muy especialmente a nuestros mecenas
 
-- Banco Hipotecario [https://www.hipotecario.com.ar/]
-- Techniques & Supplies [https://www.techniques.com.ar/]
+* Banco Hipotecario https://www.hipotecario.com.ar
+* Techniques & Supplies https://www.techniques.com.ar
+* Digital Ocean [https://www.digitalocean.com](https://www.digitalocean.com/community/pages/hollies-hub-for-good)
+
+|                                                                                                                                |                                                                                                                         |                                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| ![Logo Banco Hipotecario](https://user-images.githubusercontent.com/693328/175657136-2524d56b-a0a8-493d-b96c-d84c7c5ef468.jpg) | ![Logo Techniques](https://user-images.githubusercontent.com/693328/175666054-1ca8f020-2c31-448e-8e9d-b6f2e26811e6.jpg) | ![DO_Logo_Horizontal_Blue](https://user-images.githubusercontent.com/693328/176058383-2fa26c85-a67b-4065-8707-451a0e4daa45.png) |
+
