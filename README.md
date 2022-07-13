@@ -1,6 +1,9 @@
 # jExifToolGUI
 **Interfaz gráfica para el excelente ExifTool de línea de comandos de Phil Harvey.**
 
+![jexiftoolgui](https://user-images.githubusercontent.com/693328/178801595-045bf4bc-3e70-43af-95c2-538fe81dc9a4.png)
+
+
 ![multi platform jExifToolGUI](https://github.com/hvdwolf/jExifToolGUI/blob/master/images/multi-platform-1280.jpg)
 **jExifToolGUI** es un programa java/Swing para Windows/Linux/macOS que funciona como un frontend gráfico (GUI) para [exiftool](https://exiftool.org/).<br><br>
 jExifToolGUI es (sólo) un frontend gráfico para ExifTool. Puede utilizar una imagen de "referencia" para escribir las etiquetas a un conjunto múltiple de fotos, como las etiquetas GPS para las fotos tomadas en el mismo lugar, pero que de alguna manera les falta o contienen información GPS incorrecta.<br>
@@ -31,9 +34,11 @@ La UI está diseñada con el Diseñador de GUI de IntelliJ IDEA. Leer [readme-in
 Esta versión es un fork que amplía las capacidades de jExifToolGUI para la edición de metadatos VRA Core, ISAD(G) y Dublin Core e incluye archivos los de configuración para ExifTool; la cual se integrará a la rama master.
 
 # Acknowledgments/Agradecimientos
+* Martin Gersbach
 * Harry van der Wolf
 * Greg Reser
 * Jairo Serrano
+* Sebastián Gersbach
 
 # Sponsors/Mecenas
 Esta aplicación ha sido posible gracias al programa de **Mecenazgo Cultural** de la Ciudad Autónoma de Buenos Aires, Argentina
