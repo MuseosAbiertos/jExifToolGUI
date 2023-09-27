@@ -2,6 +2,7 @@ package org.hvdw.jexiftoolgui.controllers;
 
 import org.hvdw.jexiftoolgui.*;
 import org.hvdw.jexiftoolgui.datetime.DateTime;
+import org.hvdw.jexiftoolgui.datetime.ModifyAllDateTime;
 import org.hvdw.jexiftoolgui.datetime.ModifyDateTime;
 import org.hvdw.jexiftoolgui.datetime.ShiftDateTime;
 import org.hvdw.jexiftoolgui.facades.SystemPropertyFacade;
@@ -11,7 +12,6 @@ import org.hvdw.jexiftoolgui.metadata.MetaData;
 import org.hvdw.jexiftoolgui.metadata.RemoveMetadata;
 import org.hvdw.jexiftoolgui.model.CompareImages;
 import org.hvdw.jexiftoolgui.model.GuiConfig;
-import org.hvdw.jexiftoolgui.model.SQLiteModel;
 import org.hvdw.jexiftoolgui.renaming.RenamePhotos;
 import org.hvdw.jexiftoolgui.view.*;
 
@@ -69,6 +69,7 @@ public class MenuActionListener implements ActionListener  {
         if (selectedIndicesList == null) {
             selectedIndicesList = new ArrayList<>();
         }
+        OutputLabel.setText("");
 
         switch (mev.getActionCommand()) {
             case "Preferences":
@@ -132,7 +133,15 @@ public class MenuActionListener implements ActionListener  {
                     JOptionPane.showMessageDialog(rootPanel, String.format(ProgramTexts.HTML, 200, ResourceBundle.getBundle("translations/program_strings").getString("msd.noimgslong")), ResourceBundle.getBundle("translations/program_strings").getString("msd.noimgs"), JOptionPane.WARNING_MESSAGE);
                 }
                 break;
-            case "Set file date to DateTimeOriginal":
+            case "Modify all dates and times":
+                if ( !(selectedIndicesList == null) && (selectedIndicesList.size() > 0) ) {
+                    ModifyAllDateTime MADT = new ModifyAllDateTime();
+                    MADT.showDialog(progressBar);
+                    OutputLabel.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(rootPanel, String.format(ProgramTexts.HTML, 200, ResourceBundle.getBundle("translations/program_strings").getString("msd.noimgslong")), ResourceBundle.getBundle("translations/program_strings").getString("msd.noimgs"), JOptionPane.WARNING_MESSAGE);
+                }
+                break;            case "Set file date to DateTimeOriginal":
                 if ( !(selectedIndicesList == null) && (selectedIndicesList.size() > 0) ) {
                     dateTime.setFileDateTimeToDateTimeOriginal(progressBar, "image");
                 } else {
@@ -165,20 +174,20 @@ public class MenuActionListener implements ActionListener  {
                 break;
             case "UserMetadata":
                 MD.showDialog(rootPanel);
-                String sqlsets = SQLiteModel.getdefinedCustomSets();
-                String[] views = sqlsets.split("\\r?\\n"); // split on new lines
+                MetadataUserCombinations MUC = new MetadataUserCombinations();
+                String[] views = MUC.loadCustomSets("fill_combo");
                 UserCombiscomboBox.setModel(new DefaultComboBoxModel(views));
                 break;
             case "DeleteFavorites":
-                DeleteFavorite DelFavs = new DeleteFavorite();
-                DelFavs.showDialog(rootPanel);
+                Favorites Favs = new Favorites();
+                Favs.showDialog(rootPanel, "DeleteFavorite", "Exiftool_Command", "");
                 break;
             case "DeleteLenses":
                 SelectmyLens SmL = new SelectmyLens();
                 SmL.showDialog(rootPanel, "delete lens");
                 break;
             case "ExiftoolDatabase":
-                ExiftoolDatabase.showDialog();
+                ExiftoolReference.showDialog();
                 break;
             case "About jExifToolGUI":
                 WV.HTMLView(ResourceBundle.getBundle("translations/program_help_texts").getString("abouttitle"), ResourceBundle.getBundle("translations/program_help_texts").getString("abouttext"), 500, 450);

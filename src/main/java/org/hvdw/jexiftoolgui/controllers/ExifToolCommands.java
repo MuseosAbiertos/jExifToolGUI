@@ -2,7 +2,7 @@ package org.hvdw.jexiftoolgui.controllers;
 
 import org.hvdw.jexiftoolgui.MyVariables;
 import org.hvdw.jexiftoolgui.Utils;
-import org.hvdw.jexiftoolgui.view.SelectFavorite;
+import org.hvdw.jexiftoolgui.view.Favorites;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
@@ -10,6 +10,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -18,7 +19,7 @@ public class ExifToolCommands {
 
     private final static ch.qos.logback.classic.Logger logger = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(ExifToolCommands.class);
 
-    private SelectFavorite SelFav = new SelectFavorite();
+    private Favorites Favs = new Favorites();
 
     public void executeCommands(String Commands, JEditorPane Output, JRadioButton UseNonPropFontradioButton, JProgressBar progressBar, String ETCommandsFoldertextField, boolean IncludeSubFolders) {
         int[] selectedIndices = null;
@@ -62,23 +63,29 @@ public class ExifToolCommands {
         cmdparams.clear();
         StringBuilder tmpcmpstring = new StringBuilder();
         if (Utils.isOsFromMicrosoft()) {
-            cmdparams.add("cmd");
-            cmdparams.add("/c");
-            tmpcmpstring = new StringBuilder( " " + Utils.platformExiftool().replace("\\", "/") + " " + orgCommands + " ");
+            cmdparams.add("\"" + Utils.platformExiftool().replace("\\", "/") + "\"" );
+            String[] splitCommands = orgCommands.split(" ");
+            List<String> listCommands = Arrays.asList(splitCommands);
+            cmdparams.addAll(listCommands);
         } else { //Linux & MacOS
             cmdparams.add("/bin/sh");
             cmdparams.add("-c");
             tmpcmpstring = new StringBuilder(Utils.platformExiftool().replaceAll(" ", "\\ ") + " " + orgCommands + " ");
         }
 
-        if ( !("".equals(ETCommandsFoldertextField)) ) {
+        if ( !("".equals(ETCommandsFoldertextField)) ) { // The folder line is used
             if (IncludeSubFolders) {
-                tmpcmpstring.append(" ").append("-r");
+                if (Utils.isOsFromMicrosoft()) {
+                    cmdparams.add("-r");
+                } else {
+                    tmpcmpstring.append(" ").append("-r");
+                }
             }
             if (Utils.isOsFromMicrosoft()) {
-                tmpcmpstring.append(" ").append("\"" + ETCommandsFoldertextField.replace("\\", "/") + "\"");
+                cmdparams.add("\"" + ETCommandsFoldertextField + "\"");
             } else {
-                tmpcmpstring.append(" ").append(ETCommandsFoldertextField.replaceAll(" ", "\\ "));
+                //tmpcmpstring.append(" ").append("\"" + ETCommandsFoldertextField.replaceAll(" ", "\\ ") + "\"");
+                tmpcmpstring.append(" \"" + ETCommandsFoldertextField + "\" ");
             }
 
         } else {
@@ -88,18 +95,19 @@ public class ExifToolCommands {
                 logger.debug("finalIMG {}", finalIMG);
 
                 if (Utils.isOsFromMicrosoft()) {
-                    tmpcmpstring.append(" ").append("\"" + files[index].getPath().replace("\\", "/") + "\"");
+                    cmdparams.add("\"" + files[index].getPath() + "\"");
                 } else {
-                    tmpcmpstring.append(" ").append(files[index].getPath().replaceAll(" ", "\\ "));
+                    tmpcmpstring.append(" \"" + files[index].getPath() + "\" ");
                 }
                 //try
 
             }
         }
-        // for Windows, linux and MacOS
-        cmdparams.add(tmpcmpstring.toString());
+        if (!Utils.isOsFromMicrosoft()) { // Do this on linux and MacOS due to bash command
+            cmdparams.add(tmpcmpstring.toString());
+        }
 
-        logger.debug("cmdparams {}", cmdparams.toString());
+        logger.info("cmdparams {}", cmdparams.toString());
 
         Executor executor = Executors.newSingleThreadExecutor();
         boolean finalHtmlOutput = htmlOutput;
@@ -138,17 +146,4 @@ public class ExifToolCommands {
         counter++;
     }
 
-    public void LoadCommandFavorite(JPanel rootpanel, JTextField CommandsParameterstextField) {
-        String queryresult = "";
-
-        String favName = SelFav.showDialog(rootpanel, "Exiftool_Command");
-        logger.debug("returned selected favorite: " + favName);
-        if (!"".equals(favName)) {
-            String sql = "select command_query from userFavorites where favorite_type='Exiftool_Command' and favorite_name='" + favName + "' limit 1";
-            queryresult = SQLiteJDBC.generalQuery(sql, "disk");
-            logger.debug("returned command: " + queryresult);
-
-            CommandsParameterstextField.setText(queryresult);
-        }
-    }
 }

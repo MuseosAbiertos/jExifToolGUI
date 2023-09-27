@@ -3,7 +3,6 @@ package org.hvdw.jexiftoolgui.controllers;
 import org.hvdw.jexiftoolgui.ProgramTexts;
 import org.hvdw.jexiftoolgui.Utils;
 import org.hvdw.jexiftoolgui.editpane.EditGeotaggingdata;
-import org.hvdw.jexiftoolgui.model.SQLiteModel;
 import org.hvdw.jexiftoolgui.view.*;
 
 import javax.swing.*;
@@ -18,9 +17,9 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class ButtonsActionListener implements ActionListener {
     private final static ch.qos.logback.classic.Logger logger = (ch.qos.logback.classic.Logger) getLogger(ButtonsActionListener.class);
 
-    private DatabasePanel DBP = new DatabasePanel();
+    private ExifToolReferencePanel ETRP = new ExifToolReferencePanel();
     private SimpleWebView WV = new SimpleWebView();
-    private AddFavorite AddFav = new AddFavorite();
+    private Favorites Favs = new Favorites();
     private ExifToolCommands YourCmnds = new ExifToolCommands();
     private EditGeotaggingdata EGd = new EditGeotaggingdata();
     private MetadataUserCombinations MD = new MetadataUserCombinations();
@@ -53,6 +52,7 @@ public class ButtonsActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent gav) { // gav = gui ActionEvent
         List<Integer> selectedIndicesList = new ArrayList<Integer>();
+        OutputLabel.setText("");
 
         // This is not nice object oriented programming but gives a nice clear structured overview
         switch (gav.getActionCommand()) {
@@ -107,14 +107,15 @@ public class ButtonsActionListener implements ActionListener {
             case "ACommFavorb":
                 logger.debug("button AddCommandFavoritebutton pressed");
                 if (CommandsParameterstextField.getText().length()>0) {
-                    AddFav.showDialog(rootPanel, "Exiftool_Command", CommandsParameterstextField.getText());
+                    Favs.showDialog(rootPanel, "AddFavorite", "Exiftool_Command", CommandsParameterstextField.getText());
                 } else {
                     JOptionPane.showMessageDialog(rootPanel, ResourceBundle.getBundle("translations/program_strings").getString("msd.nocommandparams"), ResourceBundle.getBundle("translations/program_strings").getString("msd.nocommandparams"), JOptionPane.WARNING_MESSAGE);
                 }
                 break;
             case "LCommFavb":
-                logger.debug("button CommandsclearParameterSFieldButton pressed");
-                YourCmnds.LoadCommandFavorite(rootPanel, CommandsParameterstextField);
+                logger.debug("button LoadCommandFavoritebutton pressed");
+                //YourCmnds.LoadCommandFavorite(rootPanel, CommandsParameterstextField);
+                CommandsParameterstextField.setText(Favs.showDialog(rootPanel, "SelectFavorite", "Exiftool_Command", ""));
                 break;
             case "geoIFb":
                 logger.debug("button geotaggingImgFolderbutton pressed");
@@ -134,9 +135,8 @@ public class ButtonsActionListener implements ActionListener {
             case "udcCNB":
                 logger.debug("button udcCreateNewButton pressed");
                 MD.showDialog(rootPanel);
-                // Update GPS box, no matter whether we were succesful or not
-                String sqlsets = SQLiteModel.getdefinedCustomSets();
-                String[] views = sqlsets.split("\\r?\\n"); // split on new lines
+                MetadataUserCombinations MUC = new MetadataUserCombinations();
+                String[] views = MUC.loadCustomSets("fill_combo");
                 UserCombiscomboBox.setModel(new DefaultComboBoxModel(views));
                 break;
             case "udcHb":

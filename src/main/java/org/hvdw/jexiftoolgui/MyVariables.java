@@ -23,6 +23,8 @@ public class MyVariables {
     private int[] selectedFilenamesIndices;
     private String jexiftoolguiDBPath;
     private String jexiftoolguiCacheFolder;
+    private String lensFolder;
+    private String custommetadatasetFolder;
     private String cantdisplaypng;
     private String cantconvertpng;
     private String selectedLensConfig;
@@ -34,6 +36,7 @@ public class MyVariables {
     private String ExiftoolVersion;
     private List<List> tableRowsCells;
     private List<String> userCombiTableValues;
+    private List<String[]> listCustomSetsNamesPaths;
     private List<Integer> selectedIndicesList;
     private String[] CustomCombis;
     private String delayedOutput;
@@ -86,6 +89,11 @@ public class MyVariables {
     public static String getjexiftoolguiCacheFolder() { return staticInstance.jexiftoolguiCacheFolder; }
     public static void setjexiftoolguiCacheFolder(String jtgCchFldr) { staticInstance.jexiftoolguiCacheFolder = jtgCchFldr;}
 
+    public static String getlensFolder() { return staticInstance.lensFolder; }
+    public static void setlensFolder( String lnsfldr) { staticInstance.lensFolder = lnsfldr; }
+
+    public static String getcustommetadatasetFolder() { return staticInstance.custommetadatasetFolder; }
+    public static void setcustommetadatasetFolder( String cstmmtdtstFldr) { staticInstance.custommetadatasetFolder = cstmmtdtstFldr; }
     public static String getcantdisplaypng() {
         return staticInstance.cantdisplaypng;
     }
@@ -158,6 +166,9 @@ public class MyVariables {
 
     public static List<String> getuserCombiTableValues() { return staticInstance.userCombiTableValues; }
     public static void setuserCombiTableValues (List<String> userCTV) { staticInstance.userCombiTableValues = userCTV; }
+
+    public static List<String[]> getlistCustomSetsNamesPaths() { return staticInstance.listCustomSetsNamesPaths; }
+    public static void setlistCustomSetsNamesPaths (List<String[]> stlstcstmstsnmspths) {staticInstance.listCustomSetsNamesPaths = stlstcstmstsnmspths; }
 
     public static String[] getCustomCombis() { return Arrays.copyOf(staticInstance.CustomCombis, staticInstance.CustomCombis.length); }
     public static void setCustomCombis(String[] CustomCombisfromDB) { staticInstance.CustomCombis = Arrays.copyOf(CustomCombisfromDB, CustomCombisfromDB.length); }

@@ -5,6 +5,7 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import org.hvdw.jexiftoolgui.MyVariables;
 import org.hvdw.jexiftoolgui.controllers.SQLiteJDBC;
+import org.hvdw.jexiftoolgui.editpane.EditLensdata;
 import org.hvdw.jexiftoolgui.model.Lenses;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +13,10 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.lang.reflect.Method;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -61,13 +65,8 @@ public class SelectmyLens extends JDialog {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 logger.info("lens selected for deletion -{}-", lensname);
-                String sql = "delete from myLenses where lens_name = '" + lensname.trim() + "'";
-                queryresult = SQLiteJDBC.insertUpdateQuery(sql, "disk");
-                if (!"".equals(queryresult)) { //means we have an error
-                    JOptionPane.showMessageDialog(rp, ResourceBundle.getBundle("translations/program_strings").getString("sellens.delerror") + lensname, ResourceBundle.getBundle("translations/program_strings").getString("fav.delerrorshort"), JOptionPane.ERROR_MESSAGE);
-                } else { //success
-                    JOptionPane.showMessageDialog(rp, ResourceBundle.getBundle("translations/program_strings").getString("sellens.deleted") + " " + lensname, ResourceBundle.getBundle("translations/program_strings").getString("sellens.deletedshort"), JOptionPane.INFORMATION_MESSAGE);
-                }
+                EditLensdata Edl = new EditLensdata();
+                Edl.deletelensconfig(contentPane, lensname);
                 setVisible(false);
                 dispose();
             }
@@ -105,6 +104,7 @@ public class SelectmyLens extends JDialog {
         //setLocationRelativeTo(null);
         rp = rootpanel;
         setLocationByPlatform(true);
+        List<File> lensnames = new ArrayList<File>();
         setTitle(ResourceBundle.getBundle("translations/program_strings").getString("selectlens.title"));
         if ("load lens".equals(action)) {
             selectLensTopText.setText(loadLensTxt);
@@ -112,7 +112,7 @@ public class SelectmyLens extends JDialog {
             OKbutton.setEnabled(true);
             Deletebutton.setVisible(false);
             Deletebutton.setEnabled(false);
-        } else {
+        } else { //Action is to delete the lens
             selectLensTopText.setText(deleteLensTxt);
             OKbutton.setVisible(false);
             OKbutton.setEnabled(false);
@@ -122,7 +122,7 @@ public class SelectmyLens extends JDialog {
         // Make table readonly
         lensnametable.setDefaultEditor(Object.class, null);
         // Get current defined lenses
-        String lensnames = Lenses.loadlensnames();
+        lensnames = Lenses.loadlensnames();
         logger.info("retrieved lensnames: " + lensnames);
         Lenses.displaylensnames(lensnames, lensnametable);
 
